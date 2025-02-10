@@ -9,14 +9,20 @@ def add_contact(args, contacts):
     return "Contact added."
 
 def change_username_phone(args, contacts):
-    name, phone = args
-    if name in contacts:
-        contacts[name] = phone
-        return "Contact changed."
+    try: 
+        name, phone = args
+        if name in contacts:
+            contacts[name] = phone
+            return "Contact changed."
+    except KeyError:
+        print("Contact not found.")
 
 def phone_username(args, contacts):
-    name = args[0]
-    return contacts.get(name, "Contact not found.")
+    try:
+        name = args[0]
+        return contacts.get(name, "Contact not found.")
+    except KeyError:
+        print("Contact not found.")
 
 def all(contacts):
     return contacts
@@ -36,15 +42,9 @@ def main():
         elif command == "add":
             print(add_contact(args, contacts))
         elif command == "change":
-            try:
-                print(change_username_phone(args, contacts))
-            except KeyError:
-                print("Contact not found.")
+            print(change_username_phone(args, contacts))
         elif command == "phone":
-            try:
-                print(phone_username(args, contacts))
-            except KeyError:
-                print("Contact not found.")
+            print(phone_username(args, contacts))
         elif command == "all":
             print(all(contacts))
         else:
