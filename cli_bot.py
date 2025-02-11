@@ -9,20 +9,14 @@ def add_contact(args, contacts):
     return "Contact added."
 
 def change_username_phone(args, contacts):
-    try: 
         name, phone = args
         if name in contacts:
             contacts[name] = phone
             return "Contact changed."
-    except KeyError:
-        print("Contact not found.")
 
 def phone_username(args, contacts):
-    try:
         name = args[0]
         return contacts.get(name, "Contact not found.")
-    except KeyError:
-        print("Contact not found.")
 
 def all(contacts):
     return contacts
